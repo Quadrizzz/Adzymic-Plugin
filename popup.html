@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="popup.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="./assets/icon.png" alt="Collaboration tool icon"/>
+      </div>
+      <div class="signInForm show">
+        <p>Sign In</p>
+
+        <div class="input">
+          <p>Email</p>
+          <input id="signInEmail" type="email" placeholder="Enter your email address"/>
+        </div>
+
+        <div class="input">
+          <p>Password</p>
+          <input id="signInPass" type="password" placeholder="Enter your password"/>
+        </div>
+
+        <button id="signInBut">Sign In</button>
+
+        <p class="sign_up">Don't have an account ? <span>Sign Up</span></p>
+      </div>
+
+      <div class="signUpForm">
+        <p>Sign Up</p>
+
+        <div class="input">
+          <p>Email</p>
+          <input id="signUpEmail" type="email" placeholder="Enter your email address"/>
+        </div>
+
+        <div class="input">
+          <p>Username</p>
+          <input id="signUpDisplay" type="text" placeholder="Enter your userbane"/>
+        </div>
+
+        <div class="input">
+          <p>Password</p>
+          <input id="signUpPass" type="password" placeholder="Enter your password"/>
+        </div>
+
+        <button id="signUpBut">Sign Up</button>
+
+        <p class="sign_in">Already an account ? <span>Sign In</span></p>
+      </div>
+      <div>
+        <div class="bookmarks" id="bookmarks">
+          <div class="title">You can start adding comments</div>
+          <button class="signOut" id="addComments">Log Out</button>
+        </div>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

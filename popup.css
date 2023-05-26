@@ -388,3 +388,7 @@ p.commentText {
   font-size: 14px;
   font-weight: 600;
 }
+
+.tooltip{
+  opacity: 1 !important;
+}

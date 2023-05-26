@@ -87,7 +87,9 @@
 
     const updateDatabaseComment = (id)=>{
         var commentBoxInfo = JSON.parse(localStorage.getItem(id))
-        chrome.runtime.sendMessage({command: "update-comment", BoxId: id, box: JSON.stringify(commentBoxInfo), id: `${id}_${location.host.replace(".","")}`}, (response)=>{
+        var first = location.href.replaceAll("/","")
+        var second = first.replaceAll(".","")
+        chrome.runtime.sendMessage({command: "update-comment", BoxId: id, box: JSON.stringify(commentBoxInfo), id: `${id}_${second}`}, (response)=>{
             console.log(response)
         })
     }
@@ -110,13 +112,15 @@
         var width = window.innerWidth;
         var top  = window.pageYOffset || document.documentElement.scrollTop
         var left = window.pageXOffset || document.documentElement.scrollLeft;
+        var first = location.href.replaceAll("/","")
+        var second = first.replaceAll(".","")
 
         var x = 100 * ((event.clientX + left) / width)
         var y = 100 * ((event.clientY + top) / width)
         // var textId =  `${uniqueId}_text`
         var commentBoxInfo = [`${x}`,`${y}`]
         localStorage.setItem(uniqueId, JSON.stringify(commentBoxInfo))
-        chrome.runtime.sendMessage({command: "create-comment", BoxId: uniqueId, box: JSON.stringify(commentBoxInfo), url: `${location.href}`, id: `${uniqueId}_${location.host.replace(".","")}`},(response)=>{
+        chrome.runtime.sendMessage({command: "create-comment", BoxId: uniqueId, box: JSON.stringify(commentBoxInfo), url: `${location.href}`, id: `${uniqueId}_${second}`},(response)=>{
             console.log(response)
         })
         var element = document.createElement("div");

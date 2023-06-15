@@ -10,17 +10,18 @@ try{
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyAQKjl91q3d3kf4MCyx9g4pX7xfUgpSXy4",
-    databaseURL: 'https://chrome-extension-c4683-default-rtdb.firebaseio.com/',
-    authDomain: "chrome-extension-c4683.firebaseapp.com",
-    projectId: "chrome-extension-c4683",
-    storageBucket: "chrome-extension-c4683.appspot.com",
-    messagingSenderId: "491652793519",
-    appId: "1:491652793519:web:73c080d1abedc0112ac05a",
-    measurementId: "G-F511VQL194"
+    apiKey: "AIzaSyCdoaSJJegvZGYgNLWJ4LT5nFwRPBFNuX8",
+    authDomain: "adzymic-chrome-plugin.firebaseapp.com",
+    databaseURL: "https://adzymic-chrome-plugin-default-rtdb.firebaseio.com",
+    projectId: "adzymic-chrome-plugin",
+    storageBucket: "adzymic-chrome-plugin.appspot.com",
+    messagingSenderId: "1086577491953",
+    appId: "1:1086577491953:web:a8ff553b2b9a5f5139ce50",
+    measurementId: "G-YYMF6GDPD0"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  var secondary = firebase.initializeApp(firebaseConfig, 'Secondary');
 
   var db = firebase.database();
   //Add Auth to storage
@@ -103,34 +104,28 @@ try{
     }
     //Sign Up
     if(msg.command == "auth-signup"){
-      //create user
-      ///get user id
-      //make call to lambda
-      chrome.storage.local.set({ authInfo: false });
-      firebase.auth().signOut();
-      firebase.auth().createUserWithEmailAndPassword(msg.e, msg.p).catch(function (error) {
+
+      secondary.auth().createUserWithEmailAndPassword(msg.e, msg.p).catch(function (error) {
         // Handle Errors here.
         chrome.storage.local.set({ authInfo: false }); // clear any current session
         var errorCode = error.code;
         var errorMessage = error.message;
-        resp({type: "signup", status: "error", data: false, message: error});
+        // resp({type: "signup", status: "error", data: false, message: error});
       });
       //complete payment and create user object into database with new uid
-      firebase.auth().onAuthStateChanged(function (user) {
+      secondary.auth().onAuthStateChanged(function (user) {
         if (user) { //user created and logged in ...
           //build url...
-          firebase.database().ref("/users/" + user.uid).set({displayName: msg.d});
-              //success / update user / and return
-          firebase.database().ref("/users/" + user.uid).once("value").then(function (snapshot) {
-            resp({type: "result", status: "success", data: user, userObj: snapshot.val()});
-            getAllComment()
-            chrome.storage.local.set({ authInfo: user });
+          secondary.database().ref("/users/" + user.uid).set({displayName: msg.d, role: msg.r}).then(function(data){
+            resp({type: "result", status: "success"});
+            console.log("wowza")
           }).catch((result) => {
-            chrome.storage.local.set({ authInfo: false });
             resp({type: "result", status: "error", data: false});
           });
         }
       });
+
+      secondary.auth().signOut();
     }
 
     if(msg.command === "create-comment"){

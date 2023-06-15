@@ -85,6 +85,18 @@
   border-radius: 6px;
 }
 
+.loading{
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading img{
+  width: 30%;
+}
+
 .signUpForm {
   width: 70%;
   position: relative;
@@ -154,6 +166,19 @@
   border-radius: 17px;
 }
 
+.addUser {
+  border: none;
+  font-size: 12px;
+  padding: 10px 43px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  background: #00bf63;
+  color: white;
+  border-radius: 17px;
+  display: none;
+}
+
+
 .textbox {
   width: 100%;
   font-size: 12px;
@@ -168,10 +193,21 @@
 
 .bookmarks {
   display: none;
-  flex-direction: column;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 24px !important;
+}
+
+.button_to_add{
+  background: transparent;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin-top: 24px;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .bookmark {
@@ -186,7 +222,7 @@
 }
 
 .bookmark-title {
-  padding-left: 2px;
+  padding-left: 2px !important;
 }
 
 .bookmark-controls img {
@@ -197,69 +233,69 @@
 }
 
 .bookmark-controls {
-  flex: auto;
-  text-align: right;
+  flex: auto !important;
+  text-align: right !important;
 }
 
 .commentBox{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  background: #efefef;
-  z-index: 50;
-  width: 400px;
-  height: 330px;
-  z-index: 99999;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  background: #efefef !important;
+  z-index: 50 !important;
+  width: 400px !important;
+  height: 330px !important;
+  z-index: 99999 !important;
 }
 
 .commentArea{
-  border: none;
-  padding: 5%;
-  width: 400px;
-  height: 250px;
-  font-size: 15px;
-  border-bottom: thin solid #c7c1c1;
-  background: #f7f7f7;
-  outline: none;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  box-sizing: border-box;
+  border: none !important;
+  padding: 5% !important;
+  width: 400px !important;
+  height: 250px !important;
+  font-size: 15px !important;
+  border-bottom: thin solid #c7c1c1 !important;
+  background: #f7f7f7 !important;
+  outline: none !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  box-sizing: border-box !important;
 }
 
 .commentBox span{
-  color: white;
-  font-size: 1.5vw;
-  font-weight: 600;
-  margin-bottom: 3vw;
+  color: white !important;
+  font-size: 1.5vw !important;
+  font-weight: 600 !important;
+  margin-bottom: 3vw !important;
 }
 
 .submit{
-  background: green;
-  color: white;
-  border: none;
-  position: relative;
-  left: 261px;
-  bottom: 10px;
-  font-size: 13px;
-  padding: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-top: 10px;
-  height: 40px;
-  width: 120px;
+  background: green !important;
+  color: white !important;
+  border: none !important;
+  position: relative !important;
+  left: 261px !important;
+  bottom: 10px !important;
+  font-size: 13px !important;
+  padding: 0 !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  margin-top: 10px !important;
+  height: 40px !important;
+  width: 120px !important;
 }
 
 .cancelComment{
-  border: thin solid red;
-  color: red;
-  background: transparent;
-  position: relative;
-  top: 39px;
-  left: 138px;
-  font-size: 13px;
-  padding: 0;
-  height: 40px;
-  width: 100px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: thin solid red !important;
+  color: red !important;
+  background: transparent !important;
+  position: relative !important;
+  top: 39px !important;
+  left: 138px !important;
+  font-size: 13px !important;
+  padding: 0 !important;
+  height: 40px !important;
+  width: 100px !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
 button{
@@ -384,11 +420,16 @@ p.username {
 }
 
 p.commentText {
-  width: 90%;
-  font-size: 14px;
-  font-weight: 600;
+  width: 90% !important;
+  font-size: 14px !important;
+  font-family: 'san-serif' !important;
+  font-weight: 600 !important;
 }
 
 .tooltip{
   opacity: 1 !important;
+}
+
+p, button{
+  font-family: 'san-serif';
 }

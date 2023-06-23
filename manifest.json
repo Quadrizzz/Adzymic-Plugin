@@ -10,7 +10,8 @@
     "content_scripts": [
       {
         "matches": ["https://*/*"],
-        "css" : ["popup.css"]
+        "css" : ["popup.css"],
+        "all_frames": true
       }
     ],
     "web_accessible_resources": [
@@ -22,6 +23,7 @@
           "assets/save.png",
           "assets/nib.png",
           "assets/loading.gif",
+          "assets/delete.png",
           "firebase/firebase-app.js",
           "firebase/firebase-auth.js",
           "firebase/firebase-database.js"

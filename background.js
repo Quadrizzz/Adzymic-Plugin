@@ -147,6 +147,15 @@ try{
         resp({type: "result", status: "error", data: false});
       })
     }
+
+    if(msg.command === "delete-comment"){
+      firebase.database().ref("/comments/" + msg.id).set(null).then(function(){
+        resp({type: "result", status: "success"})
+      })
+      .catch((result)=>{
+        resp({type: result, status: "error"});
+      })
+    }
     return true;
   });
 

@@ -17,9 +17,18 @@
         var y = commentInfo[1]
         // var textId =  `${uniqueId}_text`
         var element = document.createElement("div");
-        element.className = "commentBox"
+        element.className = "AdzcommentBox"
         element.id = id;
         element.setAttribute("style", `position:absolute;top:${y}vw;left:${x}vw;z-index:999999`)
+        var deleteBox = document.createElement("div");
+        deleteBox.className = "deleteContainer"
+        var del = document.createElement("img")
+        del.src = chrome.runtime.getURL("assets/delete.png")
+        deleteBox.appendChild(del)
+        element.appendChild(deleteBox)
+        del.addEventListener("click",()=>{
+            deleteComment(id)
+        })
         var commentsBox = document.createElement("div");
         commentsBox.className = "commentsContainer"
         if(commentInfo[2]){
@@ -46,7 +55,7 @@
         var buttons = document.createElement("div")
         buttons.className = "buttons"
         var button1 = document.createElement("button")
-        button1.innerHTML = "Cancel"
+        button1.innerHTML = "Close"
         button1.className = "button1"
         var button2 = document.createElement("button")
         button2.innerHTML = "Comment"
@@ -64,6 +73,17 @@
         html.append(element)
     }
 
+
+    const deleteComment = (id)=>{
+        var first = location.href.replaceAll("/","")
+        var second = first.replaceAll(".","")
+        chrome.runtime.sendMessage({command: "delete-comment", id: `${id}_${second}`}, (response)=>{
+            console.log(response)
+        })
+        if(document.getElementById(id)){
+            document.getElementById(id).parentNode.removeChild(document.getElementById(id))
+        }
+    }
 
 
     const cancelComment = (id)=>{
@@ -124,9 +144,18 @@
             console.log(response)
         })
         var element = document.createElement("div");
-        element.className = "commentBox"
+        element.className = "AdzcommentBox"
         element.id = uniqueId
         element.setAttribute("style", `position:absolute;top:${y}vw;left:${x}vw;z-index:999999`)
+        var deleteBox = document.createElement("div");
+        deleteBox.className = "deleteContainer"
+        var del = document.createElement("img")
+        del.src = chrome.runtime.getURL("assets/delete.png")
+        deleteBox.appendChild(del)
+        element.appendChild(deleteBox)
+        del.addEventListener("click",()=>{
+            deleteComment(uniqueId)
+        })
         var commentsBox = document.createElement("div");
         commentsBox.className = "commentsContainer"
         element.append(commentsBox)
@@ -137,7 +166,7 @@
         var buttons = document.createElement("div")
         buttons.className = "buttons"
         var button1 = document.createElement("button")
-        button1.innerHTML = "Cancel"
+        button1.innerHTML = "Close"
         button1.className = "button1"
         var button2 = document.createElement("button")
         button2.innerHTML = "Comment"

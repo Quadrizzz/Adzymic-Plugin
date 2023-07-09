@@ -24,6 +24,7 @@
           "assets/nib.png",
           "assets/loading.gif",
           "assets/delete.png",
+          "assets/plus.png",
           "firebase/firebase-app.js",
           "firebase/firebase-auth.js",
           "firebase/firebase-database.js"

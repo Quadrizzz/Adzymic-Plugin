@@ -5,8 +5,8 @@
   </head>
   <body>
     <div class="Adzcontainer">
-      <div class="logo">
-        <img src="./assets/icon.png" alt="Collaboration tool icon"/>
+      <div class="Adzlogo">
+        <img src="./assets/icon.png" alt="Collaboration tool icon" style="width: 50px;height: 50px;"/>
       </div>
       <div class="loading show">
         <img src="./assets/loading.gif" alt="Loading"/>
@@ -42,6 +42,11 @@
         </div>
 
         <div class="input">
+          <p>Webpage</p>
+          <input id="signUpSite" type="text" placeholder="Enter accessible website"/>
+        </div>
+
+        <div class="input">
           <p>Password</p>
           <input id="signUpPass" type="password" placeholder="Enter your password"/>
         </div>
@@ -52,11 +57,21 @@
       </div>
       <div>
         <div class="bookmarks" id="bookmarks">
-          <div class="title">You can start adding comments</div>
+          <div class="title" id="title1">You can start adding comments</div>
+          <div class="title" id="title2" style="display:none;text-align: center;">You do not have access to this webpage so you cannot comment</div>
           <div class="button_to_add">
             <button class="signOut" id="addComments">Log Out</button>
             <button class="addUser">Add User</button>
           </div>
+        </div>
+        <div class="user_cont" id="user_cont" style="display:none;">
+          <div class="userBoxes">
+
+          </div>
+        </div>
+        <div class="AdzNavigate" style="display:none;">
+          <button class="nav selected" id="com">Comment</button>
+          <button class="nav" id="users">Users</button>
         </div>
       </div>
     </div>

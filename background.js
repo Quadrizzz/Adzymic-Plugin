@@ -53,6 +53,9 @@ try{
           firebase.database().ref("/users/" + user.uid).once("value").then(function (snapshot) {
             resp({type: "result", status: "success", data: user, userObj: snapshot.val()});
             getAllComment()
+            if(snapshot.val().role === "Admin"){
+              getAllUsers()
+            }
           }).catch((result) => {
             chrome.storage.local.set({ authInfo: false });
             resp({type: "result", status: "error", data: false});
@@ -95,6 +98,9 @@ try{
           firebase.database().ref("/users/" + user.uid).once("value").then(function (snapshot) {
             resp({type: "result", status: "success", data: user, userObj: snapshot.val()});
             getAllComment()
+            if(snapshot.val().role === "Admin"){
+              getAllUsers()
+            }
           }).catch((result) => {
             chrome.storage.local.set({ authInfo: false });
             resp({type: "result", status: "error", data: false});
@@ -116,9 +122,9 @@ try{
       secondary.auth().onAuthStateChanged(function (user) {
         if (user) { //user created and logged in ...
           //build url...
-          secondary.database().ref("/users/" + user.uid).set({displayName: msg.d, role: msg.r}).then(function(data){
+          secondary.database().ref("/users/" + user.uid).set({displayName: msg.d, role: msg.r, site: msg.s}).then(function(data){
             resp({type: "result", status: "success"});
-            console.log("wowza")
+            getAllUsers()
           }).catch((result) => {
             resp({type: "result", status: "error", data: false});
           });
@@ -150,12 +156,35 @@ try{
 
     if(msg.command === "delete-comment"){
       firebase.database().ref("/comments/" + msg.id).set(null).then(function(){
+        secondary.auth().deleteUser(msg.id).then(()=>{
+          resp({type: "result", status: "success"})
+        })
+      })
+      .catch((result)=>{
+        resp({type: result, status: "error"});
+      })
+    }
+
+    if(msg.command === "updateUser"){
+      var updates = {};
+      updates["/site"] = msg.url
+      secondary.database().ref("/users/" + msg.id).update(updates).then((response)=>{
+        resp({status: "success"})
+      })
+      .catch((err)=>{
+        resp({status: "failure"})
+      })
+    }
+
+    if(msg.command === "deleteUser"){
+      secondary.database().ref("/users/" + msg.id).set(null).then(function(){
         resp({type: "result", status: "success"})
       })
       .catch((result)=>{
         resp({type: result, status: "error"});
       })
     }
+
     return true;
   });
 
@@ -181,6 +210,23 @@ try{
         chrome.tabs.sendMessage(tabs[0].id,{msg:`done`})
       })
     });
+  }
+
+  function getAllUsers(){
+    var users = []
+    firebase.database().ref("/users").once("value").then(function (snapshot){
+      snapshot.forEach((child) => {
+        let infos = {
+          info: child.val(),
+          id: child.key
+        }
+        users.push(infos)
+      })
+      // localStorage.setItem("databaseComments", JSON.stringify(comments))
+      chrome.storage.local.set({"Users": JSON.stringify(users)}, () => {
+        console.log(users);
+      });
+    })
   }
 
 }catch(e){

@@ -10,14 +10,14 @@ try{
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyCdoaSJJegvZGYgNLWJ4LT5nFwRPBFNuX8",
-    authDomain: "adzymic-chrome-plugin.firebaseapp.com",
-    databaseURL: "https://adzymic-chrome-plugin-default-rtdb.firebaseio.com",
-    projectId: "adzymic-chrome-plugin",
-    storageBucket: "adzymic-chrome-plugin.appspot.com",
-    messagingSenderId: "1086577491953",
-    appId: "1:1086577491953:web:a8ff553b2b9a5f5139ce50",
-    measurementId: "G-YYMF6GDPD0"
+    apiKey: "AIzaSyBgL-SYi0YZ2xLaNHu3Tcovck81ApU1nsU",
+    authDomain: "adzymicplugin.firebaseapp.com",
+    projectId: "adzymicplugin",
+    databaseURL: "https://adzymicplugin-default-rtdb.firebaseio.com/",
+    storageBucket: "adzymicplugin.appspot.com",
+    messagingSenderId: "756369339573",
+    appId: "1:756369339573:web:9d1903d5bd60572676fafc",
+    measurementId: "G-EZ5ZR67Q3L"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

@@ -82,7 +82,7 @@ document.getElementById("signUpBut").addEventListener("click",()=>{
     var password = document.getElementById("signUpPass").value
     var display = document.getElementById("signUpDisplay").value
     var site = document.getElementById("signUpSite").value
-    var role = "User"
+    var role = "Users"
     signUpForm.classList.remove("show");
     document.getElementsByClassName("loading")[0].classList.add("show")
 
